@@ -1,4 +1,5 @@
 venv
+.env
 act
 db.sqlite3
 node_modules
