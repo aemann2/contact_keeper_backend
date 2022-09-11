@@ -30,7 +30,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 SECRET_KEY = "django-insecure-8%7*g@=q)jlsvbx4pyn2zkb#b-^n#ah@gi0@z8f**+&3ix&)@m"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG")
+DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1']
 
@@ -47,7 +48,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "contact_keeper",
+    "phone_field",
 ]
+
+AUTH_USER_MODEL = "contact_keeper.User"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
