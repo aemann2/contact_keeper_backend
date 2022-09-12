@@ -15,7 +15,6 @@ from pathlib import Path
 
 import os
 from dotenv import load_dotenv
-
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,14 +25,14 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-8%7*g@=q)jlsvbx4pyn2zkb#b-^n#ah@gi0@z8f**+&3ix&)@m"
-
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DEBUG")
 
 ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1']
 
+AUTHENTICATION_BACKENDS = (
+    ('django.contrib.auth.backends.ModelBackend'),
+)
 
 # Application definition
 
@@ -44,7 +43,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "contact_keeper",
+    "phone_field",
 ]
+
+AUTH_USER_MODEL = "contact_keeper.User"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -121,19 +124,5 @@ STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-NAME = os.getenv("NAME")
-USER = os.getenv("USER")
-PASSWORD = os.getenv("PASSWORD")
-HOST = os.getenv("HOST")
-PORT = os.getenv("PORT")
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": NAME,
-        "USER": USER,
-        "PASSWORD": PASSWORD,
-        "HOST": HOST,
-        "PORT": PORT,
-    }
-}
+DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
