@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "contact_keeper",
     "phone_field",
+    'corsheaders',
+    'rest_framework',
 ]
 
 AUTH_USER_MODEL = "contact_keeper.User"
@@ -54,6 +56,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = "src.urls"
@@ -123,3 +126,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
+
+CORS_ORIGIN_WHITELIST = [
+     'http://localhost:3000'
+]

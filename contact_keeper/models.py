@@ -25,7 +25,7 @@ class Contact(models.Model):
     )
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
-    phone = CustomPhoneField(E164_only=True, max_length=15)
+    phone = CustomPhoneField(E164_only=False, max_length=15)
     PERSONAL = "Personal"
     PROFESSIONAL = "Professional"
     CONTACT_TYPE_CHOICES = [
