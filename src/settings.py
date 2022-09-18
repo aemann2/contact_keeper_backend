@@ -31,6 +31,10 @@ AUTHENTICATION_BACKENDS = (
     ('django.contrib.auth.backends.ModelBackend'),
 )
 
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -126,7 +130,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 DATABASES = {'default': dj_database_url.parse(DATABASE_URL)}
-
-CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000'
-]
